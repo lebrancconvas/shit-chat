@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Shitchat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.2/css/bulma.css'>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="chat-app">
+        <div id="chat" class="has-text-centered">
+            <section class="hero is-success">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">Shitchat</h1>
+                        <h2>Chat Application That you can talk about SHIT.</h2>
+                    </div>
+                </div>
+            </section>
+            <section class="section chat-container">
+                <div class="container">
+                    <div class="column">
+                        <div class="box column is-8 is-offset-2">
+                            <h2 class="title">
+                                Chatbox
+                            </h2>
+                            <div class="chat-message has-text-left">
+                                <ul id="chat-messages"></ul>
+                            </div>
+                            <form action="">
+                                <div class="field has-addons">
+                                    <p class="control">
+                                        <input type='text', class='input', value='Chuck Norris', id='name'>
+                                    </p>
+                                    <p class="control is-expanded">
+                                        <input type='text', class='input', placeholder='Try to say something', id='message'>
+                                    </p>
+                                    <p class="control">
+                                        <input type='submit', class='button is-success', value='Post'>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer>
+                <div class="container">
+                    <div class="content">
+                        <p>| Power By <a href="https://github.com/lebrancconvas">Lebranc Convas</a></p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script>
+        const socket = io();
+            $('form').submit(function () {
+                const name = $('#name').val();
+                const message = $('#message').val();
+
+                socket.emit('chatter', `${name} : ${message}`);
+                $('#message').val('');
+                return false;
+            });
+
+            socket.on('chatter', function (message) {
+                $('#chat-messages').append($('<li>').text(message));
+            });
+    </script>
+</body>
+</html>
