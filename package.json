@@ -1,0 +1,13 @@
+{
+  "name": "shitchat",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/lebrancconvas/shit-chat.git",
+  "author": "lebrancconvas <lebranccconvas@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "pug": "^2.0.3",
+    "socket.io": "^2.2.0"
+  }
+}
