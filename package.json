@@ -12,7 +12,7 @@
     "socket.io": "^2.2.0"
   },
   "scripts": {
-    "start": "parcel serve ./public/index.html",
-    "build": "parcel build ./public/index.html"
+    "start": "parcel serve ./app.js",
+    "build": "parcel build ./app.js"
   }
 }
